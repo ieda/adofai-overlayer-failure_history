@@ -21,3 +21,7 @@ F4를 눌러 기록을 지 웁니다.
 
 현재 위치 이전의 이력은 숨겨집니다.
 현재 위치에서 처음 10개의 타일에 대한 이력이 표시되고 나머지 타일에 대해서는 총 타일 수와 총 실패 횟수가 표시됩니다.
+
+## Download
+
+https://github.com/ieda/adofai-overlayer-failure_history/releases
