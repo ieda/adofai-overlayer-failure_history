@@ -8,6 +8,7 @@
 // F4를 눌러 기록을 지 웁니다.
 
 // 変更履歴
+// v0.7.0 2023-01-22 Overlayer 1.33.0 で追加されたタグ登録方法に対応。
 // v0.6.1 2023-01-19 プレイ中譜面の判別ロジックを厳密化。
 // v0.6.0 2023-01-13 表示件数を超えた分のタイル数と失敗数の合計表示を追加、表示する履歴が無い時は---を表示するようにした。
 // v0.5.2 2023-01-08 数式ミスを修正した。
@@ -140,23 +141,27 @@ function isPressedKeyResetRecords() {
     return Input.getKeyDown(KeyCode.F4);
 }
 
-const msg = "";
+function failureHistory() {
+    const msg = "";
 
-if (isChangedPlayingLevel() || isPressedKeyResetRecords()) {
-  resetFailRecords();
-  setCurrentPlayingLevel();
-}
-// Player.logに無用な出力を避けるための分岐
-if (tiles != undefined && tiles.count >= 0) {
-    if (isInFailedScreen()) {
-        if (isFirstUpdateAfterFailed()) {
-            flagOnFirstUpdateAfterFailed();
-            recordFail(getReachTileNumber());
+    if (isChangedPlayingLevel() || isPressedKeyResetRecords()) {
+        resetFailRecords();
+        setCurrentPlayingLevel();
+    }
+    // Player.logに無用な出力を避けるための分岐
+    if (tiles != undefined && tiles.count >= 0) {
+        if (isInFailedScreen()) {
+            if (isFirstUpdateAfterFailed()) {
+                flagOnFirstUpdateAfterFailed();
+                recordFail(getReachTileNumber());
+                Overlayer.log("FailureHistory: fail recoreded.");
+            }
+            return msg + getFailRecords();
+        } else {
+            flagOffFirstUpdateAfterFailed();
+            return msg + getFailRecords();
         }
-        msg + getFailRecords();
-    }
-    else {
-        flagOffFirstUpdateAfterFailed();
-        msg + getFailRecords();
     }
 }
+
+Overlayer.registerTag("FailureHistory", failureHistory);
