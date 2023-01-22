@@ -1,5 +1,21 @@
 # ADOFAI's custom tag FailureHistory for Overlayer
 
+## Notice
+
+The method of registering custom tags has changed since Overlayer 1.33.0. (FailureHistory v0.7.0)
+
+**Please put FailureHistory.js in the Inits folder, not the CustomTags folder.**
+
+If you still have old version files in the CustomTags folder, please delete them.
+
+---
+
+Overlayer 1.33.0 からカスタムタグの登録方法が変わりました。（FailureHistory v0.7.0から）
+
+**CustomTagsフォルダではなく、Initsフォルダに FailureHistory.js を入れてください。**
+
+CustomTagsフォルダに古いバージョンのファイルが残っている場合は削除してください。
+
 ## Usage
 ![image](https://user-images.githubusercontent.com/2888883/213512768-a04e492c-21c2-46c0-a955-1aafaf44bb3f.png)
 
